@@ -39,6 +39,14 @@ def download_model():
         response = requests.get(MODEL_URL)
         with open(model_path, 'wb') as f:
             f.write(response.content)
+     if not os.path.exists(model_path):
+        # Download code here, e.g., using requests or another library
+        pass
+
+    # Verify the model file
+    if os.path.getsize(model_path) < 1 * 1024 * 1024:  # Adjust the size as expected
+        raise ValueError("Downloaded model file appears too small. Check the URL or file.")
+    
     return model_path
 
 def load_model():
