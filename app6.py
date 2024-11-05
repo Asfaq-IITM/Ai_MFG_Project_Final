@@ -10,7 +10,7 @@ from streamlit_lottie import st_lottie
 import requests
 
 # Model definition
-MODEL_URL = "https://drive.google.com/file/d/1ESk9azTVC8VwWtK_nEZs7unEIWtaWqVV/view?usp=sharing"  # e.g., direct download link from Google Drive
+MODEL_URL = "https://drive.google.com/uc?export=download&id=1ESk9azTVC8VwWtK_nEZs7unEIWtaWqVV"  # e.g., direct download link from Google Drive
 
 class SimpleCNN(nn.Module):
     def __init__(self, num_classes=2):
