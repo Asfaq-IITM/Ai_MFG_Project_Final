@@ -10,7 +10,7 @@ from streamlit_lottie import st_lottie
 import requests
 
 # Model definition
-MODEL_PATH = "Final_weights.pth"  # Directly reference the file in the working directory
+MODEL_URL = "https://drive.google.com/file/d/1ESk9azTVC8VwWtK_nEZs7unEIWtaWqVV/view?usp=sharing"  # e.g., direct download link from Google Drive
 
 class SimpleCNN(nn.Module):
     def __init__(self, num_classes=2):
@@ -31,8 +31,18 @@ class SimpleCNN(nn.Module):
         x = self.dropout(x)
         x = self.fc2(x)
         return x
+        
+def download_model():
+    model_path = "Final_weights.pth"
+    if not os.path.exists(model_path):
+        print("Downloading model weights...")
+        response = requests.get(MODEL_URL)
+        with open(model_path, 'wb') as f:
+            f.write(response.content)
+    return model_path
 
 def load_model():
+    model_path = download_model()
     model = SimpleCNN(num_classes=2)
     model.load_state_dict(torch.load(MODEL_PATH, map_location=torch.device('cpu')))
     model.eval()
