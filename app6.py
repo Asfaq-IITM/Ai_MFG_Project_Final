@@ -44,7 +44,7 @@ def download_model():
 def load_model():
     model_path = download_model()
     model = SimpleCNN(num_classes=2)
-    model.load_state_dict(torch.load(MODEL_PATH, map_location=torch.device('cpu')))
+    model.load_state_dict(torch.load(model_path, map_location=torch.device('cpu')))
     model.eval()
     return model
 
